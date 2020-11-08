@@ -21,7 +21,7 @@ mongoose.connect(connection_url, {
 
 //  API endpoints
 app.get("/", (req, resp) => {
-  resp.status(200).send("chaar chavanni ghode pe");
+  resp.status(200).send(`listening on port: ${port} chaar chavanni ghode pe`);
 });
 
 app.post("/youtube", (req, resp) => {
