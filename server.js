@@ -45,9 +45,9 @@ app.get("/youtube", (req, resp) => {
     })
 })
 
-app.post('/youtube/:name', (req, res) => {
-  channelSchema.findOneAndRemove({name: req.params.name}, err => {
-    res.send(req.params.name);
+app.delete('/youtube', (req, res) => {
+  channelSchema.findOneAndRemove({name: req.body.name}, err => {
+    res.send(req.body.name);
     if (err) {
       return res.status(500).send(err);
     }
