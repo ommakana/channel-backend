@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import channelSchema from "./schema.js";
-import Cors from 'cors';
+import Cors from "cors";
 
 // App config
 const app = express();
@@ -27,33 +27,28 @@ app.get("/", (req, resp) => {
 });
 
 app.post("/youtube", (req, resp) => {
-    const dbCard = req.body;
-    channelSchema.create(dbCard, (err, data) => {
-        if (err)
-        resp.status(500).send(err);
-        else
-        resp.status(201).send(data);
-    })
-})
+  const dbCard = req.body;
+  channelSchema.create(dbCard, (err, data) => {
+    if (err) resp.status(500).send(err);
+    else resp.status(201).send(data);
+  });
+});
 
 app.get("/youtube", (req, resp) => {
-    channelSchema.find((err, data) => {
-        if (err)
-        resp.status(500).send(err);
-        else
-        resp.status(200).send(data);
-    })
-})
+  channelSchema.find((err, data) => {
+    if (err) resp.status(500).send(err);
+    else resp.status(200).send(data);
+  });
+});
 
-app.delete('/youtube', (req, res) => {
-  channelSchema.findOneAndRemove({name: req.body.name}, err => {
-    res.send(req.body.name);
+app.delete("/youtube/:name", (req, res) => {
+  channelSchema.findOneAndDelete({ name: req.params.name }, (err) => {
+    res.send(`deleting : ${req.params.name}`);
     if (err) {
       return res.status(500).send(err);
     }
   });
-  // return res.send('Got a DELETE request at /user');
-})
+});
 
 // Listener
 app.listen(port, () => console.log(`chaar chavanni ghode pe: ${port}`));
