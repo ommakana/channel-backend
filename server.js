@@ -45,11 +45,12 @@ app.get("/youtube", (req, resp) => {
 
 app.delete('/youtube', (req, res) => {
   channelSchema.findOneAndRemove({name: req.body.name}, err => {
+    res.send(req.body.name);
     if (err) {
       return res.status(500).send(err);
     }
   });
-  return res.send('Got a DELETE request at /user');
+  // return res.send('Got a DELETE request at /user');
 })
 
 // Listener
