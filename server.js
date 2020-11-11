@@ -43,5 +43,12 @@ app.get("/youtube", (req, resp) => {
     })
 })
 
+app.delete('/youtube', (req, res) => {
+  console.log("delete request came");
+  console.log(req.params.name);
+  console.log(req.body.name);
+  res.send('Got a DELETE request at /user')
+})
+
 // Listener
 app.listen(port, () => console.log(`chaar chavanni ghode pe: ${port}`));
