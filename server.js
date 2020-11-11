@@ -2,11 +2,13 @@ import express from "express";
 import mongoose from "mongoose";
 import channelSchema from "./schema.js";
 import Cors from 'cors';
+
 // App config
 const app = express();
 const port = process.env.PORT || 8001;
 const connection_url =
   "mongodb+srv://channel-backend:Ub3QGCh4RJU6DT4k@cluster0.7szmy.mongodb.net/channel-db?retryWrites=true&w=majority";
+// const methodOverride = require('method-override');
 
 // Middlewares
 app.use(express.json());
@@ -43,7 +45,7 @@ app.get("/youtube", (req, resp) => {
     })
 })
 
-app.delete('/youtube/:name', (req, res) => {
+app.post('/youtube/:name', (req, res) => {
   channelSchema.findOneAndRemove({name: req.params.name}, err => {
     res.send(req.params.name);
     if (err) {
